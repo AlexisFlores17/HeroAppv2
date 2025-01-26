@@ -1,16 +1,16 @@
-import { useParams, Navigate } from "react-router";
+import { useParams, Navigate, useNavigate } from "react-router";
 import { getHeroById } from "../helpers";
-import { HR } from "flowbite-react";
+import { Button, HR } from "flowbite-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useMousePosition } from "../hooks/useMousePosition";
 
 gsap.registerPlugin(useGSAP);
 
 export const HeroPage = () => {
   const params = useParams();
-  const hero = params.id ? getHeroById(params.id) : null;
+  const hero = useMemo(() => (params.id ? getHeroById(params.id) : null), [params.id]);
   const cardRef = useRef<HTMLDivElement>(null);
   const glossRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -20,6 +20,12 @@ export const HeroPage = () => {
   const deg = useRef(0);
   const distanceToCenter = useRef(0);
   const maxDistance = useRef(0);
+  const navigate = useNavigate();
+
+
+  const onNavigateBack = () => {
+    navigate(-1);
+  }
 
   useEffect(() => {
     const Rect = cardRef.current
@@ -77,18 +83,18 @@ export const HeroPage = () => {
   }
 
   return (
-    <div className="container  px-10 py-5">
+    <div className="container  px-5 py-5">
       <h1 className="text-5xl font-bold">{hero?.superhero}</h1>
       <HR className="min-w-full dark:bg-white" />
-      <div className="flex flex-col items-center justify-center sm:flex-row sm:items-start">
+      <div className="flex flex-col items-center justify-center sm:flex-row sm:items-start cristal backdrop-blur-lg rounded-lg shadow-lg">
         <div
-          className="hero-image w-full sm:w-1/2 overflow-hidden   "
+          className="hero-image w-full sm:w-1/2 overflow-hidden"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           ref={cardRef}
         >
           <img
-            className="object-cover  w-full max-h-[500px] sm:max-h-[600px]"
+            className="object-fill  w-full max-h-[500px] sm:max-h-[600px]"
             src={`/assets/${hero.id}.jpg`}
             alt="hero-image"
           />
@@ -97,7 +103,7 @@ export const HeroPage = () => {
             ref={glossRef}
           />
         </div>
-        <div className=" m-5 sm:mx-10 sm:my-0 w-full sm:w-1/2 lg:w-3/4">
+        <div className=" m-5 sm:mx-10  w-full sm:w-1/2 lg:w-3/4">
           <h1 className="text-3xl">
             <span className="font-bold">Alter ego: </span>
             {hero.alter_ego}
@@ -117,6 +123,10 @@ export const HeroPage = () => {
             <span className="font-bold">Publisher: </span>
             {hero.publisher}
           </p>
+
+          <Button onClick={onNavigateBack} className="mt-5" >
+            Back
+          </Button>
         </div>
       </div>
     </div>
