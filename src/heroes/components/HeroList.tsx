@@ -8,7 +8,7 @@ export const HeroList = ({publisher}: {publisher: Publisher}) => {
   const heroesDc = useMemo(() => getHeroesByPublisher(publisher), [publisher]);
 
   return (
-    <div className="grid place-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 ">
+    <div className="grid place-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 animate__animated animate__fadeIn">
       {heroesDc.map((hero) => (
         <HeroCard key={hero.id} {...hero} />
       ))}

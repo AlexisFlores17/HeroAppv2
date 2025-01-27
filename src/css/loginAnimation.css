@@ -1,0 +1,57 @@
+
+.square {
+    position: absolute;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+
+    animation: animate 10s linear infinite;
+    animation-delay: calc(var(--i) * -1s);
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(-40px) ;
+    }
+    50% {
+        transform: translateY(40px) ;
+    }
+    100% {
+        transform: translateY(-40px) ;
+    }
+}
+
+
+.square:nth-child(1) {
+    width: 100px;
+    height: 100px;
+    right: 20%;
+    top: 40%;
+}
+.square:nth-child(2) {
+    width: 120px;
+    height: 100px;
+    top: 65%;
+    left: 25%;
+}
+.square:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    top: 25%;
+    left: 20%;
+}
+.square:nth-child(4) {
+    width: 60px;
+    height: 60px;
+    top: 70%;
+    right: 20%;
+}
+.square:nth-child(5) {
+    width: 100px;
+    height: 100px;
+    top: 5%;
+    right: 30%;
+}

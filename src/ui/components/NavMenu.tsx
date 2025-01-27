@@ -12,6 +12,7 @@ export const NavMenu = () => {
 
   const marvelClickHandler = useLinkClickHandler("/marvel");
   const dcClickHandler = useLinkClickHandler("/dc");
+  const searchClickHandler = useLinkClickHandler("/search");
 
   const onLogout = () => {
     navigate("/login", {
@@ -32,6 +33,7 @@ export const NavMenu = () => {
             </Navbar.Link>
 
             <Navbar.Link className="cursor-pointer" onClick={dcClickHandler}  active={location.pathname === "/dc"}>DC</Navbar.Link>
+            <Navbar.Link className="cursor-pointer" onClick={searchClickHandler}  active={location.pathname === "/search"}>Search</Navbar.Link>
 
 
           <Navbar.Link className="cursor-pointer" onClick={onLogout} >

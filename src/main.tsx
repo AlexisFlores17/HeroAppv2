@@ -1,8 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router";
-
-import "./index.css";
+import 'animate.css';
+import "./css/index.css";
 import HeroesApp from "./HeroesApp.tsx";
 import { Flowbite } from "flowbite-react";
 

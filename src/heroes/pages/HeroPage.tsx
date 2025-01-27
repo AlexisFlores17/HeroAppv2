@@ -23,6 +23,7 @@ export const HeroPage = () => {
   const navigate = useNavigate();
 
 
+
   const onNavigateBack = () => {
     navigate(-1);
   }
@@ -86,9 +87,9 @@ export const HeroPage = () => {
     <div className="container  px-5 py-5">
       <h1 className="text-5xl font-bold">{hero?.superhero}</h1>
       <HR className="min-w-full dark:bg-white" />
-      <div className="flex flex-col items-center justify-center sm:flex-row sm:items-start cristal backdrop-blur-lg rounded-lg shadow-lg">
+      <div className=" px-5 sm:px-0 flex flex-col items-center justify-center sm:flex-row sm:items-start cristal backdrop-blur-lg rounded-lg shadow-lg animate__animated animate__fadeInLeft">
         <div
-          className="hero-image w-full sm:w-1/2 overflow-hidden"
+          className="hero-image w-full sm:w-1/2 overflow-hidden  "
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           ref={cardRef}
