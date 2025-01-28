@@ -3,8 +3,8 @@ import { getHeroById } from "../helpers";
 import { Button, HR } from "flowbite-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useMousePosition } from "../hooks/useMousePosition";
+import {  useMemo, useRef } from "react";
+import { useCardAnimation3D } from "../hooks/useCardAnimation3D";
 
 gsap.registerPlugin(useGSAP);
 
@@ -13,14 +13,9 @@ export const HeroPage = () => {
   const hero = useMemo(() => (params.id ? getHeroById(params.id) : null), [params.id]);
   const cardRef = useRef<HTMLDivElement>(null);
   const glossRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const mousePosition = useMousePosition();
-  const rx = useRef(0);
-  const ry = useRef(0);
-  const deg = useRef(0);
-  const distanceToCenter = useRef(0);
-  const maxDistance = useRef(0);
   const navigate = useNavigate();
+
+  const {setIsHovered } = useCardAnimation3D({cardRef, glossRef});
 
 
 
@@ -28,56 +23,6 @@ export const HeroPage = () => {
     navigate(-1);
   }
 
-  useEffect(() => {
-    const Rect = cardRef.current
-      ? cardRef.current.getBoundingClientRect()
-      : null;
-
-    const halfWidth = Rect ? Rect.width / 2 : 0;
-    const halfHeight = Rect ? Rect.height / 2 : 0;
-
-    const cardCenterX = Rect ? Rect.left + halfWidth : 0;
-    const cardCenterY = Rect ? Rect.top + halfHeight : 0;
-
-    const deltaX = mousePosition.x - cardCenterX;
-    const deltaY = mousePosition.y - cardCenterY;
-
-    rx.current = deltaY / halfHeight;
-    ry.current = deltaX / halfWidth;
-
-    distanceToCenter.current = Math.sqrt(
-      Math.pow(deltaX, 2) + Math.pow(deltaY, 2)
-    );
-    maxDistance.current = Math.max(halfWidth, halfHeight);
-
-    deg.current = (distanceToCenter.current * 10) / maxDistance.current;
-  }, [mousePosition]);
-
-  useGSAP(() => {
-    gsap.to(cardRef.current, {
-      transform: isHovered
-        ? `rotate3D(${-rx.current}, ${ry.current}, 0, ${deg.current}deg)`
-        : `rotate3D(0, 0, 0, 0deg)`,
-      duration: 0.2,
-      perspective: 1000,
-      transformStyle: "preserve-3d",
-      willChange: "transform",
-      ease: "power2.In",
-    });
-    gsap.to(glossRef.current, {
-      transform: `translate(${ry.current * 100 * -1}%, ${
-        rx.current * 100 * -1
-      }%) scale(2.4)`,
-      opacity: isHovered
-        ? `${(distanceToCenter.current * 0.6) / maxDistance.current}`
-        : "0",
-      willChange: "transform, opacity",
-      duration: 0.2,
-      ease: "power2.Out",
-      perspective: 1000,
-      transformStyle: "preserve-3d",
-    });
-  }, [mousePosition]);
 
   if (!hero) {
     return <Navigate to="/" />;
@@ -87,9 +32,9 @@ export const HeroPage = () => {
     <div className="container  px-5 py-5">
       <h1 className="text-5xl font-bold">{hero?.superhero}</h1>
       <HR className="min-w-full dark:bg-white" />
-      <div className=" px-5 sm:px-0 flex flex-col items-center justify-center sm:flex-row sm:items-start cristal backdrop-blur-lg rounded-lg shadow-lg animate__animated animate__fadeInLeft">
+      <div className=" p-5 sm:p-0 flex flex-col items-center justify-center sm:flex-row sm:items-start cristal backdrop-blur-lg rounded-lg shadow-lg animate__animated animate__fadeInLeft">
         <div
-          className="hero-image w-full sm:w-1/2 overflow-hidden  "
+          className="relative w-full sm:w-1/2 overflow-hidden "
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           ref={cardRef}

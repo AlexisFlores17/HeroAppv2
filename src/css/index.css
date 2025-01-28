@@ -26,14 +26,6 @@
   /* box-shadow: 0 8px 32px 0rgba(0, 0, 0, 0.37); */
 }
 
-.hero-image {
-  /* 
-  background-position: center;
-  background-repeat: no-repeat; */
-
-  position: relative;
-}
-
 .gloss-card {
   transform-style: preserve-3d;
   opacity: 0;
