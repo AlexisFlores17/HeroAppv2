@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-interface FormState {
-  [key: string]: string | number;
+interface Props {
+  initialForm:{[key: string]: string};
 }
 
 
-export const useForm = (initialForm: FormState) => {
+export const useForm = ({initialForm}:Props) => {
 
   const [formState, setFormState] = useState(initialForm);
 
