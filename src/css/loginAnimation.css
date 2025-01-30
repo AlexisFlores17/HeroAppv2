@@ -32,8 +32,8 @@
     top: 40%;
 }
 .square:nth-child(2) {
-    width: 120px;
-    height: 100px;
+    width: 90px;
+    height: 80px;
     top: 65%;
     left: 25%;
 }
@@ -54,4 +54,28 @@
     height: 100px;
     top: 5%;
     right: 30%;
+}
+.square:nth-child(6) {
+    width: 80px;
+    height: 70px;
+    top: 5%;
+    left: 5%;
+}
+.square:nth-child(7) {
+    width: 80px;
+    height: 70px;
+    bottom: 5%;
+    left: 10%;
+}
+.square:nth-child(8) {
+    width: 80px;
+    height: 70px;
+    top: 5%;
+    right: 10%;
+}
+.square:nth-child(9) {
+    width: 80px;
+    height: 70px;
+    bottom: 5%;
+    right: 10%;
 }

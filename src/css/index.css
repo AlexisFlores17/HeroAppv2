@@ -5,9 +5,13 @@
 
 
 .login{
-  background: rgb(0,0,0);
   position: relative;
-  background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(27,27,43,1) 35%, rgba(18,105,122,1) 100%);
+  /* background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(27,27,43,1) 35%, rgba(18,105,122,1) 100%); */
+  background-image: url("/assets/login-bg.jpg");
+  background-size: fill;
+  background-repeat: no-repeat;
+  background-position: center;
+
 }
 
 .login-cristal {
