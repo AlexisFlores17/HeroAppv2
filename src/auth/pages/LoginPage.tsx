@@ -1,10 +1,17 @@
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { useContext } from "react";
 import { useNavigate } from "react-router";
+import { AuthContext } from "../context";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
+  const {login}= useContext(AuthContext);
 
-  const onSubmit = () => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    login("Alexis Flores");
+
     navigate("/", {
       replace: true,
     });
