@@ -6,13 +6,18 @@ import { AuthContext } from "../context";
 export const LoginPage = () => {
   const navigate = useNavigate();
   const {login}= useContext(AuthContext);
-
+  
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    login("Alexis Flores");
 
-    navigate("/", {
+ 
+
+    login("Alexis Flores");
+    
+
+
+    navigate("/marvel", {
       replace: true,
     });
   };
