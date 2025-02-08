@@ -1,11 +1,11 @@
 import { HR } from "flowbite-react";
 import { HeroList } from "../components";
-import gsap from "gsap";
+// import gsap from "gsap";
 // import { useGSAP } from "@gsap/react";
 // import { useRef } from "react";
-import ScrollTrigger from "gsap/ScrollTrigger";
+// import ScrollTrigger from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
 export const DcPage = () => {
   // const bg = "/assets/dc-bg.jpg";
